@@ -1,0 +1,792 @@
+
+
+1:
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+
+
+
+
+2:
+import React from 'react';
+
+function App() {
+  return (
+    <div>
+      React bootcamp finder
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+3
+import React, { useState } from 'react';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+function App() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const toggle = () => setIsOpen(!isOpen);
+  return (
+    
+    <div>
+      <Navbar className='navbar navbar-dark bg-primary' expand="md">
+        <NavbarBrand href="/" className='mr-auto' style={{marginLeft: '16px'}}>
+            Bootcamp finder
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} className="mr-2" />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav navbar>
+              <NavItem>
+                  <NavLink href="/">Bootcamps</NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink href="/add-bootcamp">Add bootcamp</NavLink>
+              </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+4: 
+import React from 'react'
+
+export const NavbarCompnents = () => {
+  return (
+    <div>NavbarCompnents</div>
+  )
+}
+
+
+
+5:
+import React, { useState } from 'react'
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+
+export const NavbarCompnent = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const toggle = () => setIsOpen(!isOpen);
+  
+  return (
+    <div>
+            <Navbar className='navbar navbar-dark bg-primary' expand="md">
+        <NavbarBrand href="/" className='mr-auto' style={{marginLeft: '16px'}}>
+            Bootcamp finder
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} className="mr-2" />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav navbar>
+              <NavItem>
+                  <NavLink href="/">Bootcamps</NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink href="/add-bootcamp">Add bootcamp</NavLink>
+              </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  )
+}
+
+6:
+import { NavbarCompnent } from "./components/navbarComponent/NavbarComponent";
+
+function App() {
+    return (
+        <nav>
+            <NavbarCompnent />
+        </nav>
+    );
+}
+
+export default App;
+
+
+7:
+import { NavbarCompnent } from "./components/navbarComponent/NavbarComponent";
+import React from "react";
+import { Container, Row } from "reactstrap";
+
+function App() {
+    return (
+        <React.Fragment>
+            <nav>
+                <NavbarCompnent />
+            </nav>
+
+            <Container>
+                <Row>
+                    <aside className="col-4">Sidebar</aside>
+                    <main className="col-8">Main</main>
+                </Row>
+            </Container>
+        </React.Fragment>
+    );
+}
+
+export default App;
+
+
+8:
+{
+    "bootcampCities": [
+        {
+            "id": 1,
+            "cityName": "London",
+            "summary": "Looking to break into London's burgeoning tech scene but not sure where to start, what to read or what events to attend? In this thought-provoking and inspiring session, we'll give you the inside scoop on how to make your name in the exciting startup world in London. We'll highlight the key events to attend, tell you all about the 'who's who', explain the role of venture capitalists and accelerators and fill you in on key players such as Tech City UK and Google Campus.",
+            "image": "london.png"
+        },
+        {
+            "id": 2,
+            "cityName": "Shenzhen",
+            "summary": "If you still think China is only about manufacturing cheap stuff and scaling production, you are terribly wrong. In recent years, a handful of innovative Chinese tech companies grew to a massive scale with digital products and crafted user experience. We all know giants like Alibaba, Tencent or Baidu, but PionierGarage decided to go on a mission to meet young Chinese entrepreneurs, explore the startup environment and find the next unicorn.",
+            "image": "shenzhen.png"
+        },
+        {
+            "id": 3,
+            "cityName": "Sacramento",
+            "summary": "Sacramento, California. For the longest time, those from the Bay Area identified it as a stop on the way to Lake Tahoe. And millions of fifth graders, meanwhile, failed to identify it as the capital of California. However over the last decade the once semi-quiet government city has transformed itself, spurred by an economic renaissance and the no longer far-fetched conviction of Sacramento’s leaders that their city is an emerging tech hub.",
+            "image": "sacramento.png"
+        },
+        {
+            "id": 4,
+            "cityName": "Mumbai",
+            "summary": "What's the startup scene like in Mumbai, India? How much funding is available? What about coworking spaces and startup events? Here's Teleport's overview of the startup scene inMumbai, India, including details on startup funding, coworking spaces, startup events and meetups.",
+            "image": "sacramento.png"
+        },
+        {
+            "id": 5,
+            "cityName": "Amsterdam",
+            "summary": "There's a reason tech talent chooses Amsterdam. The city's continued acumen for innovation, its world-class digital infrastructure and its roster of cutting-edge companies and events make it a haven for any tech professional.",
+            "image": "amsterdam.png"
+        }
+    ]
+}
+
+9:
+.sidebar {
+    padding: 40px 25px;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-bottom: none;
+
+    }
+
+}
+
+
+10:
+import React from 'react'
+
+export const SidebarComponent = () => {
+  return (
+    <div>SidebarComponent</div>
+  )
+}
+
+11:
+export interface ICity {
+    cityName: string;
+    id: number;
+    image: string;
+    summary: string;
+}
+
+12:
+import React from 'react'
+import { ICity } from '../../models/ICity'
+import cities from "../../assets/data/bootcamps.json";
+
+export const SidebarComponent = () => {
+
+    const cityListItems = cities.bootcampCities.map((city: ICity) => {
+        return <li key={city.cityName}>{city.cityName}</li>
+    });
+
+    return (
+        <aside className='col-4 sidebar'>
+            <ul>{cityListItems}</ul>
+        </aside>
+    )
+}
+
+13:
+import React from 'react'
+
+export const MainComponent = () => {
+  return (
+    <main className='col-8'>main</main>
+  )
+}
+
+
+14:
+import { NavbarCompnent } from "./components/navbarComponent/NavbarComponent";
+import React, { useState } from 'react';
+import { Container, Row } from "reactstrap";
+import { SidebarComponent } from "./components/sidebarComponent/SidebarComponent";
+import { MainComponent } from "./components/mainComponent/MainComponent";
+import { ICity } from "./models/ICity";
+
+import "./styles/app.scss";
+
+
+function App() {
+
+  const [selectedCity, setSelectedCity] = useState({} as ICity)
+  console.log('selected city', selectedCity)
+  return (
+    <React.Fragment>
+      <nav>
+        <NavbarCompnent />
+      </nav>
+
+      <Container>
+        <Row>
+            <SidebarComponent selectedCityHandler={setSelectedCity} />
+            <MainComponent />
+        </Row>
+      </Container>
+
+    </React.Fragment>
+  );
+}
+
+export default App;
+
+
+
+15:
+import React, { Dispatch, SetStateAction } from 'react'
+import { ICity } from '../../models/ICity'
+import cities from "../../assets/data/bootcamps.json";
+
+interface ISidebarComponentsProps {
+    selectedCityHandler: Dispatch<SetStateAction<ICity>>
+}
+
+export const SidebarComponent = (props: ISidebarComponentsProps) => {
+
+    const cityListItems = cities.bootcampCities.map((city: ICity) => {
+        return <li onClick={() => props.selectedCityHandler(city)} key={city.cityName}>{
+            city.cityName}
+            </li>
+    });
+
+    return (
+        <aside className='col-4 sidebar'>
+            <ul>{cityListItems}</ul>
+        </aside>
+    )
+}
+
+
+
+
+16:
+* {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    padding: 40px 25px;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-bottom: none;
+
+        li {
+            display: block;
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-bottom:  1px solid #ccc;
+            
+            &:hover {
+                background: #8563c2;
+                color: white;
+            }
+        }
+    }
+}
+
+main {
+    margin: 40px 0;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+
+17:
+import React from 'react'
+import { ICity } from '../../models/ICity'
+
+interface IMainComponentProps {
+  selectedCityObject: ICity;
+}
+
+export const MainComponent = (props: IMainComponentProps) => {
+  let cityDetails = null;
+
+  if (Object.keys(props?.selectedCityObject).length > 0) {
+    cityDetails = (
+      <><h3>{props?.selectedCityObject?.cityName}</h3></>
+    )
+  }
+  return (
+    <main className='col-8'>{cityDetails}</main>
+  )
+}
+
+
+18:
+* {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    padding: 40px 25px;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-bottom: none;
+
+        li {
+            display: block;
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-bottom:  1px solid #ccc;
+            
+            &:hover {
+                background: #8563c2;
+                color: white;
+            }
+        }
+    }
+}
+
+main {
+    margin: 40px 0;
+    border: 1px solid #ccc;
+    padding: 15px;
+
+    h3 {
+        margin-bottom: 25px;
+    }
+
+    img {
+        margin-bottom: 25px;
+        width: 100%;
+    }
+}
+
+
+19:
+import React from 'react'
+import { ICity } from '../../models/ICity'
+
+interface IMainComponentProps {
+  selectedCityObject: ICity;
+}
+
+export const MainComponent = (props: IMainComponentProps) => {
+  let cityDetails = null;
+
+  if (Object.keys(props?.selectedCityObject).length > 0) {
+    cityDetails = (
+      <>
+        <h3>{props?.selectedCityObject?.cityName}</h3>
+        <img src={`/images/${props?.selectedCityObject?.cityName?.toString()}.jpg`} alt="Scenery of city" />
+        <p>{props?.selectedCityObject?.summary}</p>  
+      </>
+    )
+  }
+  return (
+    <main className='col-8'>{cityDetails}</main>
+  )
+}
+
+
+20:
+import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import { ICity } from '../../models/ICity'
+import cities from "../../assets/data/bootcamps.json";
+
+interface ISidebarComponentsProps {
+    selectedCityHandler: Dispatch<SetStateAction<ICity>>
+}
+
+export const SidebarComponent = (props: ISidebarComponentsProps) => {
+
+    useEffect(() => {
+        props?.selectedCityHandler(cities?.bootcampCities[0]);
+    }, [])
+
+
+    const cityListItems = cities.bootcampCities.map((city: ICity) => {
+        return <li onClick={() => props.selectedCityHandler(city)} key={city.cityName}>{
+            city.cityName}
+            </li>
+    });
+
+    return (
+        <aside className='col-4 sidebar'>
+            <ul>{cityListItems}</ul>
+        </aside>
+    )
+}
+
+
+21:
+import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import { ICity } from '../../models/ICity'
+import cities from "../../assets/data/bootcamps.json";
+
+interface ISidebarComponentsProps {
+    selectedCityHandler: Dispatch<SetStateAction<ICity>>
+    currentSelectedCity: ICity;
+}
+
+export const SidebarComponent = (props: ISidebarComponentsProps) => {
+
+    useEffect(() => {
+        props?.selectedCityHandler(cities?.bootcampCities[0]);
+    }, [])
+
+
+    const cityListItems = cities.bootcampCities.map((city: ICity) => {
+    let activeClass = props?.currentSelectedCity?.id === city?.id ? 'active-city' : '';
+
+        return <li onClick={() => props.selectedCityHandler(city)} key={city.cityName} className={activeClass} >{
+            city.cityName}
+            </li>
+    });
+
+    return (
+        <aside className='col-4 sidebar'>
+            <ul>{cityListItems}</ul>
+        </aside>
+    )
+}
+
+
+22:
+import React, { useState } from 'react'
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+
+export const NavbarCompnent = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar className='navbar navbar-dark bg-primary' expand="md">
+        <NavbarBrand href="/" className='mr-auto' style={{marginLeft: '16px'}}>
+            Bootcamp finder
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} className="mr-2" />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav navbar>
+              <NavItem>
+                  <NavLink to="/">Bootcamps</NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink to="/add-bootcamp">Add bootcamp</NavLink>
+              </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  )
+}
+
+23:
+import { NavbarCompnent } from "./components/navbarComponents/NavbarCompnent";
+import React, { useState } from 'react';
+import { Container, Row } from "reactstrap";
+import { SidebarComponent } from "./components/sidebarComponent/SidebarComponent";
+import { MainComponent } from "./components/mainComponent/MainComponen";
+import { ICity } from "./models/ICity";
+
+import "./styles/app.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+
+function App() {
+
+  const [selectedCity, setSelectedCity] = useState({} as ICity)
+  console.log('selected city', selectedCity)
+  return (
+    <BrowserRouter>
+      <nav>
+        <NavbarCompnent />
+      </nav>
+
+      <Container>
+        <Row>
+          <Routes>
+            <Route path="/" element={
+              <>
+                 <SidebarComponent selectedCityHandler={setSelectedCity} currentSelectedCity={selectedCity}  />
+                 <MainComponent selectedCityObject={selectedCity} />
+              </>
+            } />
+
+            <Route path="/add-bootcamp" element={<p>Add a bootcamp</p>} />
+
+          </Routes>
+           
+        </Row>
+      </Container>
+
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+24:
+
+.navbar {
+    a {
+        color: white;
+        margin-left: 35px;
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}
+
+
+25:
+    <Route path="*" element={<p>404 route</p>} />
+
+
+26:
+.add-form {
+    margin: 40px 0;
+
+    input, 
+    textarea {
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    textarea {
+        height: 120px;
+    }
+}
+
+
+
+26:
+import React from 'react'
+
+export const AddBootcampComponent = () => {
+  return (
+    <div>AddBootcampComponent</div>
+  )
+}
+
+28:
+<div className="col-12 bootcamp-container">
+    <AddBootcampComponent />
+</div>
+
+
+
+
+29:
+import React from 'react'
+import {useForm} from "react-hook-form";
+import { yupResolver}  from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+interface FormValues {
+    title: string;
+    imageUrl: string;
+    details: string;
+}
+
+export const AddBootcampComponent = () => {
+    const validationSchema = yup.object({
+        title:  yup.string().required().min(2),
+        imageUrl: yup.string().required().min(5),
+        details: yup.string().required()
+    }).required();
+
+    const {
+	register,
+        handleSubmit,
+        formState: {errors},
+        control
+    } = useForm<FormValues>({
+        resolver: yupResolver(validationSchema)
+    });
+
+  
+    return (
+    <div>Add form</div>
+  )
+}
+
+
+30:
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Button, FormGroup, Label } from "reactstrap";
+
+interface FormValues {
+    title: string;
+    imageUrl: string;
+    details: string;
+}
+
+export const AddBootcampComponent = () => {
+    const validationSchema = yup
+        .object({
+            title: yup.string().required().min(2),
+            imageUrl: yup.string().required().min(5),
+            details: yup.string().required(),
+        })
+        .required();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        control,
+    } = useForm<FormValues>({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmit = (data: any) => {
+        console.log("data", data);
+    };
+
+    return (
+        <div className="add-form">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormGroup>
+                    <Label for="title">Title</Label>
+                    <input {...register("title")} autoFocus tabIndex={1} />
+                </FormGroup>
+
+                <Button type="submit">Submit</Button>
+            </form>
+        </div>
+    );
+};
+
+
+
+31:
+<Label for="imageUrl">Image url</Label>
+<input {...register("imageUrl")} tabIndex={2} /> 
+
+
+
+32: 
+<Label for="details">Details</Label>
+<textarea {...register("details")} tabIndex={3}></textarea>
+
+
+
+33:
+import React from 'react'
+import {useForm} from "react-hook-form";
+import { yupResolver}  from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Button, FormGroup, Label } from 'reactstrap';
+
+interface FormValues {
+    title: string;
+    imageUrl: string;
+    details: string;
+}
+
+export const AddBootcampComponent = () => {
+    const validationSchema = yup.object({
+        title:  yup.string().required().min(2),
+        imageUrl: yup.string().required().min(5),
+        details: yup.string().required()
+    }).required();
+
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+        control
+    } = useForm<FormValues>({
+        resolver: yupResolver(validationSchema)
+    });
+
+    const onSubmit = (data: any) => {
+        console.log("data", data);
+    }
+  
+    return (
+        <div className='add-form'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                
+                <FormGroup>
+                    <Label for="title">Title</Label>
+                    {errors?.title?.message && (<div className='text-danger error-message'>{errors.title?.message?.toString()}</div>)}
+                    <input {...register("title")} autoFocus tabIndex={1} />
+
+                    <Label for="imageUrl">Image url</Label>
+                    {errors?.imageUrl?.message && (<div className='text-danger error-message'>{errors.imageUrl?.message?.toString()}</div>)}
+                    <input {...register("imageUrl")} tabIndex={2} /> 
+
+                    <Label for="details">Details</Label>
+                    {errors?.details?.message && (<div className='text-danger error-message'>{errors.details?.message?.toString()}</div>)}
+                    <textarea {...register("details")} tabIndex={3}></textarea>
+                </FormGroup>
+
+                <Button type="submit" tabIndex={4}>
+                    Submit
+                </Button>
+
+            </form>
+        </div>
+    )
+}
